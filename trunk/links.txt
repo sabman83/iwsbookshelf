@@ -1,0 +1,4 @@
+http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=0H07E57B8B2GHH4549R2&Operation=ItemSearch&Condition=All&ResponseGroup=Medium&SearchIndex=Books&Keywords=Godfather&Merchant=All&Version=2007-07-16
+
+
+http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=0H07E57B8B2GHH4549R2&Operation=ItemLookup&ItemId=0451205766&IdType=ASIN&ResponseGroup=Medium

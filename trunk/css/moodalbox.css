@@ -1,0 +1,95 @@
+/* moodalbox CSS */
+
+div#mb_overlay {
+position: absolute;
+left: 0;
+width: 100%;
+background-color: #000;
+cursor: pointer;
+}
+
+div#mb_center, div#mb_bottom {
+position: absolute;
+left: 50%;
+overflow: hidden;
+background-color: #DDD;
+}
+
+div#mb_center {
+background-color: #FFF;
+}
+
+div#mb_contents {
+background-image: url(../images/body.jpg);
+width: 400px;
+height: 400px;
+border: 10px solid #DDD;
+overflow: auto;
+background-color: #FFF;
+visibility: hidden;
+}
+
+div#mb_contents h3{
+font-family: "Times New Roman", Times, serif;
+font-size: 1.6em;
+font-style: italic;
+color: #926B4A;
+text-align: left;
+}
+
+div#mb_contents .add_box{
+border: 1px dotted #AA8661!important;
+border: none;
+margin-left: 310px;	
+}
+
+div#mb_contents .add_box input.fields_add_book {
+display: block;
+background: url(../images/menu_hover.png)!important;
+background: none;
+border-top: 1px solid #C0935C;
+border-left: 1px solid #C0935C;
+border-bottom: 1px solid #D9B17D;
+border-right: 1px solid #D9B17D;
+}
+
+.mb_loading {
+background: #DDD url(../images/loading.gif) no-repeat center center;
+}
+
+#mb_error {
+font-size: 1.2em;
+color: #CD0000;
+font-weight: bold;
+text-align: center;
+padding: 0.5em;
+font-family: Verdana, Helvetica, sans-serif;
+}
+
+#mb_error em {
+font-size: 0.8em;
+}
+
+div#mb_bottom {
+font-family: Verdana, Helvetica, sans-serif;
+font-size: 10px;
+color: #666;
+line-height: 1.4em;
+text-align: left;
+border: 10px solid #DDD;
+border-top-style: none;
+}
+
+a#mb_close_link {
+display: block;
+float: right;
+width: 66px;
+height: 22px;
+background: transparent url(../images/closelabel.gif) no-repeat center;
+margin: 5px 0;
+}
+
+div#mb_caption {
+margin-right: 71px;
+}
+
