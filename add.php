@@ -10,59 +10,51 @@
 <script	type="text/javascript" src="lib/moodalbox.js"> </script>
 <script type="text/javascript" src="lib/pbbdatepicker.v1.1.js"></script>
 <script type="text/javascript">
-		
+window.addEvent('domready', function(){
+	var rating = $('current_rating');
+
+	$('one_rating').addEvent('click', function(){
+					
+			var storeRating = new Fx.Style($('current_rating'),'width');
+			storeRating.set(16);
+			$('current_rating').setProperty('title','1');
+			});
+	
+	$('two_rating').addEvent('click', function(){
+					
+			var storeRating = new Fx.Style($('current_rating'),'width');
+			storeRating.set(32);
+			$('current_rating').setProperty('title','2');
+			});
+	$('three_rating').addEvent('click', function(){
+					
+			var storeRating = new Fx.Style($('current_rating'),'width');
+			storeRating.set(48);
+			$('current_rating').setProperty('title','3');
+			});
+	
+	$('four_rating').addEvent('click', function(){
+					
+			var storeRating = new Fx.Style($('current_rating'),'width');
+			storeRating.set(64);
+			$('current_rating').setProperty('title','4');
+			});
+	$('five_rating').addEvent('click', function(){
+					
+			var storeRating = new Fx.Style($('current_rating'),'width');
+			storeRating.set(80);
+			$('current_rating').setProperty('title','5');
+			});
+});
 </script>	
 </head>
 <?php
+include_once('inc/aws.class.php');
 
-//**Amazon Web Service Details**
-//Access IDs
-define("Access_Key_ID", "0H07E57B8B2GHH4549R2");
+$aws_object = new AmazonWebService();
 
-function printSearchResults($parsed_xml, $SearchIndex){
-    $current = $parsed_xml->Items->Item;
-	if (isset($current->MediumImage->URL)) {
-    print("<img align=\"left\" src=\"".$current->MediumImage->URL."\"></img>");
-	print("<br/>".$current->ItemAttributes->Title."");
-	print("<br/> By ".$current->ItemAttributes->Author);
-	
- }
- else{
-  print("<center>No matches found.</center>");
-   }
+$book_details = $aws_object->ItemLookup($_GET['id']);
 
-
-}
-
-//Set up the operation in the request
-function ItemLookup	($id){
-
-//Set the values for some of the parameters.
-$Operation = "ItemLookup";
-$Version = "2007-07-16";
-$ResponseGroup = "Medium";
-$IdType = "ASIN";
-
-//User interface provides values 
-//for $SearchIndex and $Keywords
-
-//Define the request
-$request=
-     "http://ecs.amazonaws.com/onca/xml"
-   . "?Service=AWSECommerceService"
-   . "&AWSAccessKeyId=" . Access_Key_ID
-   . "&Operation=" . $Operation
-   . "&ItemId=" . $id
-   . "&IdType=" . $IdType
-   . "&ResponseGroup=" . $ResponseGroup;
-
-//Catch the response in the $response object
-$response = file_get_contents($request);
-$parsed_xml = simplexml_load_string($response);
-
-printSearchResults($parsed_xml, $SearchIndex);
-
-}
 ?>
 <body>
 
@@ -117,7 +109,11 @@ printSearchResults($parsed_xml, $SearchIndex);
 	<div class="form_box">
 	    <div class="add_box">
 	    <p>Fill in the details below and click on Add</p>
-		<p><? ItemLookup($_GET['id'])?></p>
+		<p><?
+			print("<img align=\"left\" src=\"".$aws_object->get_medium_image($book_details)."\"></img>");
+			print("<br/>".$aws_object->get_title($book_details));
+			print("<br/> By ".$aws_object->get_author($book_details));?>
+		</p>
 		<br/><br/><br/><br/>
 		<form id="add_form" method="get" class="add_book" action="ajax/fetch.php">
 		    <p>
@@ -125,32 +121,32 @@ printSearchResults($parsed_xml, $SearchIndex);
 				
 				<ul class="star-rating">
 					<li>
-					      <a href="" title="1 star out of 5" class="current-rating" style="width: 0px;">
+					      <a href="javascript: void(0)" title="" class="current-rating" id="current_rating" style="width: 0px;">
 					      Current Rating
 					      </a>
 					      </li>
 					<li>
-					      <a href="" title="1 star out of 5" class="one-star">
+					      <a href="javascript: void(0)" title="1" id="one_rating" class="one-star">
 					      1 star
 					      </a>
 					      </li>
 					<li>
-					      <a href="" title="2 stars out of 5" class="two-stars">
+					      <a href="javascript: void(0)" title="2" id="two_rating" class="two-stars">
 					      2 stars
 					      </a>
 					      </li>
 					<li>
-					      <a href="" title="3 stars out of 5" class="three-stars">
+					      <a href="javascript: void(0)" title="3" id="three_rating" class="three-stars">
 					      3 stars
 					      </a>
 					      </li>
 					<li>
-					      <a href="" title="4 stars out of 5" class="four-stars">
+					      <a href="javascript: void(0)" title="4" id="four_rating" class="four-stars">
 					      4 stars
 					      </a>
 					      </li>
 					<li>
-						  <a href="" title="5 stars out of 5" class="five-stars">
+						  <a href="javascript: void(0)" title="5" id="five_rating" class="five-stars">
 						  5 stars
 				      </a>
 				     </li>

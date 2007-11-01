@@ -31,13 +31,13 @@ $this->request = "http://ecs.amazonaws.com/onca/xml"
    . "&Keywords=" . $Keywords
    . "&ResponseGroup=" . $this->ResponseGroup ;
 
-$response = file_get_contents($request);
+$response = file_get_contents($this->request);
 $parsed_xml = simplexml_load_string($response);
 
 return $parsed_xml;
 } 
 
-public function ItemLookup($Itemid, ){
+public function ItemLookup($Itemid){
 $this->Operation = "ItemLookup";
 $this->SearchIndex = $SearchIndex;
 $this->IdType = "ASIN";
@@ -46,10 +46,10 @@ $this->request = "http://ecs.amazonaws.com/onca/xml"
    . "&AWSAccessKeyId=" . $this->access_key_id
    . "&Operation=" . $this->Operation
    . "&ItemId=" . $Itemid
-   . "&IdType=" . $IdType
-   . "&ResponseGroup=" . $ResponseGroup;
+   . "&IdType=" . $this->IdType
+   . "&ResponseGroup=" . $this->ResponseGroup;
 
-$response = file_get_contents($request);
+$response = file_get_contents($this->request);
 $parsed_xml = simplexml_load_string($response);
 
 return $parsed_xml;
@@ -104,6 +104,16 @@ public function printItemResult($parsed_xml){
  }
  else{
   print("<center>No matches found.</center>");
+   }
+}
+
+public function get_medium_image($parsed_xml){
+	$current = $parsed_xml->Items->Item;
+	if (isset($current->MediumImage->URL)) {
+		return $current->MediumImage->URL;
+		}
+	else{
+		return("No matches found.");
    }
 }
 

@@ -391,7 +391,7 @@ background-color: #444;
 
 /*AJAX Star Rating*/
 .star-rating li .current-rating{
-background: url(../images/star.gif) left bottom;
+background: url(../images/star.gif) left center;
 position: absolute;
 height: 16px;
 display: block;
