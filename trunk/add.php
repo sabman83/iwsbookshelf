@@ -13,7 +13,57 @@
 		
 </script>	
 </head>
+<?php
 
+//**Amazon Web Service Details**
+//Access IDs
+define("Access_Key_ID", "0H07E57B8B2GHH4549R2");
+
+function printSearchResults($parsed_xml, $SearchIndex){
+    $current = $parsed_xml->Items->Item;
+	if (isset($current->MediumImage->URL)) {
+    print("<img align=\"left\" src=\"".$current->MediumImage->URL."\"></img>");
+	print("<br/>".$current->ItemAttributes->Title."");
+	print("<br/> By ".$current->ItemAttributes->Author);
+	
+ }
+ else{
+  print("<center>No matches found.</center>");
+   }
+
+
+}
+
+//Set up the operation in the request
+function ItemLookup	($id){
+
+//Set the values for some of the parameters.
+$Operation = "ItemLookup";
+$Version = "2007-07-16";
+$ResponseGroup = "Medium";
+$IdType = "ASIN";
+
+//User interface provides values 
+//for $SearchIndex and $Keywords
+
+//Define the request
+$request=
+     "http://ecs.amazonaws.com/onca/xml"
+   . "?Service=AWSECommerceService"
+   . "&AWSAccessKeyId=" . Access_Key_ID
+   . "&Operation=" . $Operation
+   . "&ItemId=" . $id
+   . "&IdType=" . $IdType
+   . "&ResponseGroup=" . $ResponseGroup;
+
+//Catch the response in the $response object
+$response = file_get_contents($request);
+$parsed_xml = simplexml_load_string($response);
+
+printSearchResults($parsed_xml, $SearchIndex);
+
+}
+?>
 <body>
 
 <div id="container">
@@ -67,9 +117,46 @@
 	<div class="form_box">
 	    <div class="add_box">
 	    <p>Fill in the details below and click on Add</p>
+		<p><? ItemLookup($_GET['id'])?></p>
+		<br/><br/><br/><br/>
 		<form id="add_form" method="get" class="add_book" action="ajax/fetch.php">
 		    <p>
-		      <label>1) Rate the book:<br/></label>
+		      <label>1) Rate the book:</label>
+				
+				<ul class="star-rating">
+					<li>
+					      <a href="" title="1 star out of 5" class="current-rating" style="width: 0px;">
+					      Current Rating
+					      </a>
+					      </li>
+					<li>
+					      <a href="" title="1 star out of 5" class="one-star">
+					      1 star
+					      </a>
+					      </li>
+					<li>
+					      <a href="" title="2 stars out of 5" class="two-stars">
+					      2 stars
+					      </a>
+					      </li>
+					<li>
+					      <a href="" title="3 stars out of 5" class="three-stars">
+					      3 stars
+					      </a>
+					      </li>
+					<li>
+					      <a href="" title="4 stars out of 5" class="four-stars">
+					      4 stars
+					      </a>
+					      </li>
+					<li>
+						  <a href="" title="5 stars out of 5" class="five-stars">
+						  5 stars
+				      </a>
+				     </li>
+				</ul>
+				<br/>
+			  <p>
 			  <label>2) Enter the name of the shelves where you want this book to be placed. Separate each shelf name with a comma:</label>
 		      <input type="text" class="fields_contact_us" name="Shelf" id="shelf" />
 			  <br/>
