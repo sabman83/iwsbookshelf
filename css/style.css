@@ -387,3 +387,75 @@ color: #fff;
 color: #fff;
 background-color: #444;
 }
+
+
+/*AJAX Star Rating*/
+.star-rating li .current-rating{
+background: url(../images/star.gif) left bottom;
+position: absolute;
+height: 16px;
+display: block;
+text-indent: -9000px;
+z-index: 1;
+}
+
+.star-rating{
+list-style: none;
+margin: 3px;
+padding: 0px;
+width: 80px;
+height: 16px;
+position: relative;
+background: url(../images/star.gif) top left repeat-x;
+}
+
+.star-rating li a{
+display:block;
+width:16px;
+height: 16px;
+text-decoration: none;
+text-indent: -9000px;
+z-index: 20;
+position: absolute;
+padding: 0px;
+background-image:none;
+}
+
+.star-rating li a:hover{
+background: url(../images/star.gif) left center;
+z-index: 1;
+left: 0px;
+}
+
+.star-rating a.one-star{
+left: 0px;
+}
+
+.star-rating a.one-star:hover{
+width:16px;
+}
+.star-rating a.two-stars{
+left:16px;
+}
+.star-rating a.two-stars:hover{
+width: 32px;
+}
+.star-rating a.three-stars{
+left: 32px;
+}
+.star-rating a.three-stars:hover{
+width: 48px;
+}
+.star-rating a.four-stars{
+left: 48px;
+}
+.star-rating a.four-stars:hover{
+width: 64px;
+}
+.star-rating a.five-stars{
+left: 64px;
+}
+.star-rating a.five-stars:hover{
+width: 80px;
+}
+
