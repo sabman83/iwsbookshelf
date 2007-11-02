@@ -1,10 +1,10 @@
 <?php
-include_once('inc/aws.class.php');
+$username = "root";
+$password = "";
+$hostname = "localhost"; 
 
-$aws_object = new AmazonWebService();
-
-$search_results = $aws_object->ItemLookup("0345478983");
-
-$aws_object->printItemResult($search_results);
-
+//connection to the database
+$dbhandle = mysql_connect($hostname, $username, $password)
+  or die("Unable to connect to MySQL");
+echo "Connected to MySQL<br>";
 ?>

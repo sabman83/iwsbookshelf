@@ -1,56 +1,55 @@
-<?
+<?php
 class dbBookshelf {
 
-var $db_host;
-var $db_schema;
-var $db_user;
-var $db_password;
-var $db_port;
+	var $host;
+	var $schema;
+	var $user;
+	var $password;
+	var $port;
 
-function dbBookshelf(){
-this->db_host = "localhost";
-this->db_schema = "bookshelf";
-this->db_user = "root";
-this->db_password = "";
-this->db_port = "3306";
-}
+	function dbBookshelf(){
 
-public function connect(){
-	if (!($db = mysql_pconnect($this->host, $this->user, $this->password))){
-	die("Can't connect to database server.");
-    return false;
-	}else{
-		// select a database
-		if (!(mysql_select_db(this->schema,$db))){
-		die("Can't connect to database.");
-		return false;
-    }else{
-		return true;
-		}
-}
-}
+	$this->host = "localhost";
 
-public function store_book($asin_id,$comments,$rating,$date){
-$query = "INSERT INTO bookshelf.books VALUES (".$asin_id.",".$rating.",".$comments.",".$date.")";
-$result = mysql_query($query);
-if (!result){
-print "Error in Storing Data";
-}
-}
+	$this->schema = "bookshelf";
 
-public function store_tags($asin_id,$tag_array){
+	$this->user = "root";
 
-foreach($tag_array as $tag)
-{
-$query = "INSERT INTO bookshelf.tags VALUES (".$asin_id.",".$tag.")";
-$result = mysql_query($query);
-if (!result){
-print "Error in Storing Data";
-}
-}
-}
+	$this->password = "";
 
+	$this->port = "3306";
+	}
+	
+	
+	public function store_book($asin_id,$comments,$rating,$date){
+	$query = "INSERT INTO bookshelf.books VALUES (".$asin_id.",".$rating.",".$comments.",".$date.")";
+	$result = mysql_query($query);
+	if (!result){
+	print "Error in Storing Data";
+	}
+	}
 
+	public function store_tags($asin_id,$tag_array){
+	foreach($tag_array as $tag)
+	{
+	$query = "INSERT INTO bookshelf.tags VALUES (".$asin_id.",".$tag.")";
+	$result = mysql_query($query);
+	if (!result){
+	print "Error in Storing Data";
+	}
+	}
+	}
+
+	public function connect(){
+		//connection to the database
+		$dbhandle = mysql_connect($this->host, $this->user, $this->password)
+		  or die("Unable to connect to MySQL");
+		//select a database to work with
+		$dbselect = mysql_select_db($this->schema,$dbhandle)
+		  or die("Could not select examples");
+		return true;  
+	}
+	
 
 }
 ?>
