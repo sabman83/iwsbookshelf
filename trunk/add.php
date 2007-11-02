@@ -18,6 +18,7 @@ window.addEvent('domready', function(){
 			var storeRating = new Fx.Style($('current_rating'),'width');
 			storeRating.set(16);
 			$('current_rating').setProperty('title','1');
+			$('rating').setProperty('value','1');
 			});
 	
 	$('two_rating').addEvent('click', function(){
@@ -25,12 +26,14 @@ window.addEvent('domready', function(){
 			var storeRating = new Fx.Style($('current_rating'),'width');
 			storeRating.set(32);
 			$('current_rating').setProperty('title','2');
+			$('rating').setProperty('value','2');
 			});
 	$('three_rating').addEvent('click', function(){
 					
 			var storeRating = new Fx.Style($('current_rating'),'width');
 			storeRating.set(48);
 			$('current_rating').setProperty('title','3');
+			$('rating').setProperty('value','3');
 			});
 	
 	$('four_rating').addEvent('click', function(){
@@ -38,15 +41,30 @@ window.addEvent('domready', function(){
 			var storeRating = new Fx.Style($('current_rating'),'width');
 			storeRating.set(64);
 			$('current_rating').setProperty('title','4');
+			$('rating').setProperty('value','4');
 			});
 	$('five_rating').addEvent('click', function(){
 					
 			var storeRating = new Fx.Style($('current_rating'),'width');
 			storeRating.set(80);
 			$('current_rating').setProperty('title','5');
+			$('rating').setProperty('value','5');
 			});
 });
 </script>	
+<script type="text/javascript">
+	window.onload = function() {
+
+                MyDatePicker = new PBBDatePicker($('date_read'), {
+                        selectMinDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+                        rangeYear: {'min': new Date().getFullYear(), 'max': new Date().getFullYear() + 2},
+                        iconImg : 'images/date.png',
+                        onShow: function(picker){
+                                picker.effects({duration: 500, transition: Fx.Transitions.quadInOut}).custom({'opacity': [0, 0.8]});
+                        } 
+                });
+		}
+</script>
 </head>
 <?php
 include_once('inc/aws.class.php');
@@ -115,7 +133,7 @@ $book_details = $aws_object->ItemLookup($_GET['id']);
 			print("<br/> By ".$aws_object->get_author($book_details));?>
 		</p>
 		<br/><br/><br/><br/>
-		<form id="add_form" method="get" class="add_book" action="ajax/fetch.php">
+		<form id="add_form" method="post" class="add_book" action="ajax/store.php">
 		    <p>
 		      <label>1) Rate the book:</label>
 				
@@ -161,9 +179,10 @@ $book_details = $aws_object->ItemLookup($_GET['id']);
 			  </label>
 			  <br/>
 			  <label>4) Date Read:
-			  <input type="text" class="fields_contact_us"/>
+			  <input type="text" name="date_read" id="date_read" class="fields_contact_us"/>
 			  </label>
-			  
+			  <input type="hidden" name="asin" id="asin" value="<? print $_GET['id']?>" />
+			  <input type="hidden" name="rating" id="rating" value="0" />
 		    <input type="submit" class="login_button" name="search" value="Add" id="add"/>
 		    </label>
 			</p>
