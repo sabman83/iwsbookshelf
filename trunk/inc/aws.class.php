@@ -138,3 +138,4 @@ public function get_author($parsed_xml){
 }
 
 }
+?>
