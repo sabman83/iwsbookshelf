@@ -56,8 +56,7 @@ window.addEvent('domready', function(){
 	window.onload = function() {
 
                 MyDatePicker = new PBBDatePicker($('date_read'), {
-                        selectMinDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
-                        rangeYear: {'min': new Date().getFullYear(), 'max': new Date().getFullYear() + 2},
+                        rangeYear: {'min': new Date().getFullYear() - 20, 'max': new Date().getFullYear() + 20},
                         iconImg : 'images/date.png',
                         onShow: function(picker){
                                 picker.effects({duration: 500, transition: Fx.Transitions.quadInOut}).custom({'opacity': [0, 0.8]});

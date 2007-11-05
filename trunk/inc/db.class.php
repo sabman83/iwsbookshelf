@@ -22,21 +22,17 @@ class dbBookshelf {
 	
 	
 	public function store_book($asin_id,$comments,$rating,$date){
-	$query = "INSERT INTO bookshelf.books VALUES (".$asin_id.",".$rating.",".$comments.",".$date.")";
+	$query = "INSERT INTO bookshelf.books VALUES ('".$asin_id."','".$rating."','".$comments."','".$date."')";
 	$result = mysql_query($query);
-	if (!result){
-	print "Error in Storing Data";
-	}
+	return $result;
 	}
 
 	public function store_tags($asin_id,$tag_array){
 	foreach($tag_array as $tag)
 	{
-	$query = "INSERT INTO bookshelf.tags VALUES (".$asin_id.",".$tag.")";
+	$query = "INSERT INTO bookshelf.tags VALUES ('".$asin_id."','".$tag."')";
 	$result = mysql_query($query);
-	if (!result){
-	print "Error in Storing Data";
-	}
+	return $result;
 	}
 	}
 
