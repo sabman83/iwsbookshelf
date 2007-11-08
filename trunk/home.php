@@ -1,7 +1,7 @@
 <?
 session_start();
 if (isset($_SESSION['uid'])) {
-    header('Location: home.php');
+    header('Location: index.php');
 }
 
 ?>
@@ -89,22 +89,7 @@ if (isset($_SESSION['uid'])) {
 
 
     <h3>Your entire Book Shelf....right here!!</h3>
-    <p>Welcome to the <b>Bookshelf Portal</b>. This application works as your virtual online bookshelf. You can add books, create new shelves for different books, rate books and also be connected to the Amazon Book Shop to buy books. Besides this you can also create news feeds for the latest in news about authors you like or books you are looking forward to read. To start using this application simply login below and start adding your favorite books now...!!.  </p>
-	<form id="login_form" method="post" class="contact_us" action="">
-	    <p>
-	      <label>Username
-	      <input type="text" class="fields_contact_us" name="username" />
-
-	    </label>
-
-	    <label>Password
-	    <input type="password" class="fields_contact_us" name="password" />
-		</label>
-		
-	    <input type="submit" class="login_button" name="login" value="Login" />
-	    </label>
-		</p>
-  </form>
+    <p><span style="float:left;font-size:50px;line-height:30px;padding-top:2px;font-family: Georgia;">W</span>elcome to your <b>Bookshelf Portal</b>.</p><p> <span style="float:left;font-size:50px;line-height:30px;padding-top:2px;font-family: Georgia;">Y</span>ou can start creating your bookshelf by clicking on the <i>"Add Books"</i> linkin the left menu. If you have already added your books then you can have a look at your shelf by clicking the <i>"You Shelf"</i> link. The portal is also powered with <i>news feeds</i> where you can browse through books related news items from Yahoo!, Google, CNN etc. Incase you follow literary blogs or websites, you can bookmark then and store them right here! Tag them and use the <i>"Bookmark"</i> link on the left menu to view them </p>
 </div>
 
 <div id="footer"></div>
