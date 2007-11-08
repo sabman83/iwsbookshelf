@@ -96,29 +96,30 @@
 
 
     <h3>Your entire Book Shelf....right here!!</h3>
-    <p>Register below ... All fields are required</p>
+    <p><span style="float:left;font-size:50px;line-height:30px;padding-top:2px;font-family: Georgia;">R</span>egister below ... All fields are required</p>
+	<br/>
 	<div class="form_box">
 	<form id="register" method="post" class="add_book" action="">
 	    <p>
 		  <label>Email Address:
-		  <input type="text"  class="validate['email']" name="email" />
+		  <input type="text"  class="validate['required','email']" name="email" />
 		  </label>
 		<br/>
 	    <label>Password:
-	    <input type="password" class="validate['length[6,-1]']" name="password" />
+	    <input type="password" class="validate['required','length[6,-1]']" name="password" />
 		(should be of 6 characters or more)
 		</label>
 		<br/><br/>
 		<label>Re-Type Password:
-	    <input type="password" class="validate['confirm[password]']" name="repassword" />
+	    <input type="password" class="validate['required','confirm[password]']" name="repassword" />
 		</label>
 		<br/>
 		<label>First Name:
-	    <input type="text" class="validate['required','length[0,-1]','nodigit']" name="fname" />
+	    <input type="text" class="validate['required','length[1,-1]','nodigit']" name="fname" />
 		</label>
 		<br/>
 		<label>Last Name:
-	    <input type="text" class="validate['required','length[0,-1]','nodigit']" name="lname" />
+	    <input type="text" class="validate['required','length[1,-1]','nodigit']" name="lname" />
 		</label>
 		
 		
