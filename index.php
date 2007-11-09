@@ -1,6 +1,6 @@
 <?
 session_start();
-if (isset($_SESSION['uid'])) {
+if (isset($_SESSION['uemail'])) {
     header('Location: home.php');
 }
 
@@ -89,7 +89,7 @@ if (isset($_SESSION['uid'])) {
 
 
     <h3>Your entire Book Shelf....right here!!</h3>
-    <p>Welcome to the <b>Bookshelf Portal</b>. This application works as your virtual online bookshelf. You can add books, create new shelves for different books, rate books and also be connected to the Amazon Book Shop to buy books. Besides this you can also create news feeds for the latest in news about authors you like or books you are looking forward to read. To start using this application simply login below and start adding your favorite books now...!!.  </p>
+    <p><span style="float:left;font-size:50px;line-height:30px;padding-top:2px;font-family: Georgia;">W</span>elcome to the <b>Bookshelf Portal</b>. This application works as your virtual online bookshelf. You can add books, create new shelves for different books, rate books and also be connected to the Amazon Book Shop to buy books. Besides this you can also create news feeds for the latest in news about authors you like or books you are looking forward to read. To start using this application simply login below and start adding your favorite books now...!!.  </p>
 	<form id="login_form" method="post" class="contact_us" action="">
 	    <p>
 	      <label>Username
@@ -105,6 +105,8 @@ if (isset($_SESSION['uid'])) {
 	    </label>
 		</p>
   </form>
+  
+  <p>If you are not registered click <a href="register.php">HERE</a></p>
 </div>
 
 <div id="footer"></div>
