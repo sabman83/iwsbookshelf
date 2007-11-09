@@ -21,14 +21,15 @@ class dbBookshelf {
 	}
 	
 	
-	public function store_user($uid,$uemail,$upassword){
-	$query = "INSERT INTO bookshelf.user VALUES ('".$uid.",'".$uemail."','".$upassword."')";
+	public function store_user($uemail,$upassword,$fname,$lname){
+	$uid = "NULL";
+	$query = "INSERT INTO bookshelf.user VALUES (".$uid.",'".$uemail."','".$upassword."','".$fname."','".$lname."')";
 	$result = mysql_query($query);
 	return $result;
 	}
 	
 	public function store_book($uid,$asin_id,$comments,$rating,$date){
-	$query = "INSERT INTO bookshelf.books VALUES ('".$uid.",'".$asin_id."','".$rating."','".$comments."','".$date."')";
+	$query = "INSERT INTO bookshelf.books VALUES ('".$uid."','".$asin_id."','".$rating."','".$comments."','".$date."')";
 	$result = mysql_query($query);
 	return $result;
 	}
@@ -36,7 +37,7 @@ class dbBookshelf {
 	public function store_tags($uid,$asin_id,$tag_array){
 	foreach($tag_array as $tag)
 	{
-	$query = "INSERT INTO bookshelf.tags VALUES ('".$uid.",'".$asin_id."','".$tag."')";
+	$query = "INSERT INTO bookshelf.tags VALUES ('".$uid."','".$asin_id."','".$tag."')";
 	$result = mysql_query($query);
 	return $result;
 	}
@@ -50,6 +51,20 @@ class dbBookshelf {
 	return $result;
 	}
 	}
+	
+	public function get_uname($uemail){
+	$query = "SELECT ufirstname, ulastname FROM bookshelf.user WHERE uemail = '".$uemail."'";
+	$result = mysql_query($query);
+	$row = mysql_fetch_row($result);
+	return $row;
+	}
+
+	public function get_uid($uemail){
+	$query = "SELECT uid FROM bookshelf.user WHERE uemail = '".$uemail."'";
+	$result = mysql_query($query);
+	$row = mysql_fetch_row($result);
+	return $row;
+	}	
 	
 	public function connect(){
 		//connection to the database

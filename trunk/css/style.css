@@ -322,6 +322,15 @@ margin-right: 71px;
 color: #55311B;
 }
 
+#add_box{
+	overflow: auto;
+}
+ 
+#add_box.ajax-loading {
+	padding: 20px 0;
+	background: background: url(../images/ajax-loader.gif) no-repeat left;
+}
+
 
 /*Date Picker*/
 .PBBDatePicker {
