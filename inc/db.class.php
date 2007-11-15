@@ -76,6 +76,12 @@ class dbBookshelf {
 		return true;  
 	}
 	
+	public function validate_user($uemail,$upassword){
+	$query = "SELECT uid FROM bookshelf.user WHERE uemail = '".$uemail."' and upassword = '".$upassword."'";
+	$result = mysql_query($query);
+	$row = mysql_fetch_row($result);
+	return $row;
+	}
 
 }
 ?>

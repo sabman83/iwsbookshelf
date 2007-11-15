@@ -45,9 +45,10 @@ $name = $dbObject->get_uname($_SESSION['uemail']);
 <ul id="navlist">
 <li id="active"><a href="#" id="current">Home</a></li>
 <li><a href="search.php">Add Books</a></li>
-<li><a href="#">The Shelves</a></li>
+<li><a href="#">Your Shelf</a></li>
 <li><a href="#">News</a></li>
-<li><a href="#">Timeline</a></li>
+<li><a href="#">BookMarks</a></li>
+<li><a href="ajax/logout.php">Logout</a></li>
 </ul>
 </div>
 

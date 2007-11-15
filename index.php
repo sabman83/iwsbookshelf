@@ -11,6 +11,40 @@ if (isset($_SESSION['uemail'])) {
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>The Book Store | By Dieter Schneider 2007 | www.csstemplateheaven.com</title>
 <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+<script type="text/javascript" src="lib/mootools.js"></script>
+<script type="text/javascript">
+		window.addEvent('domready', function(){
+			$('login_form').addEvent('submit', function(e) {
+				/**
+				 * Prevent the submit event
+				 */
+				new Event(e).stop();
+			
+				/**
+				 * This empties the log and shows the spinning indicator
+				 */
+				/*var log = $('login_form').empty().addClass('ajax-loading');*/
+				
+				/**
+				 * send takes care of encoding and returns the Ajax instance.
+				 * onComplete removes the spinner from the log.
+				 */
+				this.send({
+					evalResponse:true,
+					onComplete: function(feedback) {
+						/*log.removeClass('ajax-loading');*/
+						
+						if (feedback == 'false')
+							$('login_message').setText('logged in successfully');
+						else
+							$('login_message').setText(feedback);
+						
+						
+					}
+				});
+			});
+		}); 
+</script>
 </head>
 
 <body>
@@ -90,8 +124,9 @@ if (isset($_SESSION['uemail'])) {
 
     <h3>Your entire Book Shelf....right here!!</h3>
     <p><span style="float:left;font-size:50px;line-height:30px;padding-top:2px;font-family: Georgia;">W</span>elcome to the <b>Bookshelf Portal</b>. This application works as your virtual online bookshelf. You can add books, create new shelves for different books, rate books and also be connected to the Amazon Book Shop to buy books. Besides this you can also create news feeds for the latest in news about authors you like or books you are looking forward to read. To start using this application simply login below and start adding your favorite books now...!!.  </p>
-	<form id="login_form" method="post" class="contact_us" action="">
+	<form id="login_form" method="post" class="contact_us" action="ajax/login.php">
 	    <p>
+		
 	      <label>Username
 	      <input type="text" class="fields_contact_us" name="username" />
 
@@ -103,6 +138,7 @@ if (isset($_SESSION['uemail'])) {
 		
 	    <input type="submit" class="login_button" name="login" value="Login" />
 	    </label>
+		<div id="login_message" style="color: red;"></div>
 		</p>
   </form>
   
