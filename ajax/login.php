@@ -1,6 +1,6 @@
 <?
-
 session_start();
+header('Content-type: text/plain');
 
 include_once('../inc/db.class.php');
 
@@ -15,6 +15,7 @@ $check_user = $dbObject->validate_user($email,$password);
 if (is_null($check_user[0])){
 print "false";
 }else{
+$_SESSION['uemail'] = $email;
 print "true";
 }
 }

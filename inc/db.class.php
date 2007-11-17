@@ -39,14 +39,14 @@ class dbBookshelf {
 	{
 	$query = "INSERT INTO bookshelf.tags VALUES ('".$uid."','".$asin_id."','".$tag."')";
 	$result = mysql_query($query);
-	return $result;
 	}
+	return $result;
 	}
 
 	public function store_bookmark($uid,$url,$tag_array){
 	foreach($tag_array as $tag)
 	{
-	$query = "INSERT INTO bookshelf.bookmark VALUES ('".$uid.",'".$url."','".$tag."')";
+	$query = "INSERT INTO bookshelf.bookmark VALUES ('".$uid.",'".$url."','".trim($tag)."')";
 	$result = mysql_query($query);
 	return $result;
 	}
@@ -65,6 +65,13 @@ class dbBookshelf {
 	$row = mysql_fetch_row($result);
 	return $row;
 	}	
+	
+	public function get_tags($uid){
+	$query = "SELECT tag_names FROM bookshelf.tags WHERE uid = '".$uid."'";
+	$result = mysql_query($query);
+	$row = mysql_fetch_array($result);
+	return $row;
+	}
 	
 	public function connect(){
 		//connection to the database
