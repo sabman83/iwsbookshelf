@@ -31,13 +31,16 @@ if (isset($_SESSION['uemail'])) {
 				 */
 				this.send({
 					evalResponse:true,
-					onComplete: function(feedback) {
+					onComplete: function(response) {
 						/*log.removeClass('ajax-loading');*/
-						
-						if (feedback == 'false')
-							$('login_message').setText('logged in successfully');
+						var feedback = String(response);
+						if (feedback.charAt('0') == 't'){
+							$('login_message').setText('logged in successfully...Proceeding');
+							<? ?>
+							window.location = "home.php";
+							}
 						else
-							$('login_message').setText(feedback);
+							$('login_message').setText('Error....try again or Register if you havn\'t');
 						
 						
 					}
