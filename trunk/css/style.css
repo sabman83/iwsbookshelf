@@ -90,6 +90,16 @@ h3 {
 	text-align: center;
 }
 
+h3.tagTitle {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 1.6em;
+	font-style: italic;
+	color: #926B4A;
+	text-align: left;
+	cursor: pointer;
+}
+
+
 h4 {color: #926B4A;
 margin-bottom: 15px;
 }

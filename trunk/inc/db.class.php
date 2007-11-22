@@ -67,9 +67,26 @@ class dbBookshelf {
 	}	
 	
 	public function get_tags($uid){
-	$query = "SELECT tag_names FROM bookshelf.tags WHERE uid = '".$uid."'";
+	$query = "SELECT DISTINCT tag_names FROM bookshelf.tags WHERE uid = '".$uid[0]."' GROUP BY tag_names";
 	$result = mysql_query($query);
-	$row = mysql_fetch_array($result);
+	$row = array();
+	$i = 0;
+	while($tmp = mysql_fetch_row($result)){
+		$row[$i]  = $tmp[0]; 
+	$i++;
+	}
+	return $row;
+	}
+	
+	public function get_books_by_tags($tag,$uid){
+	$query = "SELECT asin FROM bookshelf.tags WHERE uid = '".$uid[0]."' AND tag_names ='".$tag."'";
+	$result = mysql_query($query);
+	$row = array();
+	$i = 0;
+	while($tmp = mysql_fetch_row($result)){
+		$row[$i]  = $tmp[0]; 
+	$i++;
+	}
 	return $row;
 	}
 	
