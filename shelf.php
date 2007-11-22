@@ -6,8 +6,10 @@ if (!isset($_SESSION['uemail'])) {
 }
 
 include_once 'inc/db.class.php';
+include_once 'inc/aws.class.php';
 
 $dbObject = new dbBookshelf();
+$awsObject = new AmazonWebService();
 
 $check_dbConnect = $dbObject->connect();
 
@@ -24,6 +26,12 @@ $tags = $dbObject->get_tags($uid[0]);
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>The Book Store | By Dieter Schneider 2007 | www.csstemplateheaven.com</title>
 <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+<script type="text/javascript" src="lib/mootools.js"></script>
+<script type="text/javascript">
+		window.onload = function() {
+			var myAccordianEffect = new Accordion('h3.tagTitle', 'div.tagBooks', {display:-1,alwaysHide: true});
+		}
+</script>
 </head>
 
 <body>
@@ -76,19 +84,36 @@ $tags = $dbObject->get_tags($uid[0]);
 
 <div id="content">
 
-
-    <h3>Your entire Book Shelf....right here!!</h3>
-    <p>Browse through your shelf using the tag-links bellow:
-	<ul>
-	<?
-	$query = "SELECT DISTINCT tag_names FROM bookshelf.tags WHERE uid = '".$uid[0]."' GROUP BY tag_names";
-	$result = mysql_query($query);
-	while($row  = mysql_fetch_row($result)){
+	<p>Click on the Shelf Title to display the books. Clicking on book image will take you to the Book Details page:
 	
-	print "<li><a href=\"fetch?id=".trim($row[0])."\">".$row[0]."</li>";
+	<?
+	$row = $dbObject->get_tags($uid[0]);
+	$i = 0;
+	while($row[$i]){
+	print "<h3 class='tagTitle'>".$row[$i]."</h3>";
+	print"<div class='tagBooks'>";
+	$taggedBook = $dbObject->get_books_by_tags($row[$i],$uid[0]); 
+	//print_r($taggedBook);
+	$j =0;
+	print "<table>";
+	while($taggedBook[$j])
+		{
+		print "<tr>";
+		for($k=0;$k<3;$k++){
+			while($awsObject->get_medium_image($taggedBook[($j+$k)])){
+			print "<td>";
+			print "<a href=\"details.php?id=".$taggedBook[$j]."\"><img src=\"".$awsObject->get_medium_image($taggedBook[$j])."\"></img></a>";
+			$j++;
+			print "</td>";
+			}
+		}
+		print "</tr>";
+		}
+	print "</table>";
+	print"</div>";
+	$i++;
 	}
 	?>
-	</ul>
 	</p>
 </div>
 

@@ -107,13 +107,14 @@ public function printItemResult($parsed_xml){
    }
 }
 
-public function get_medium_image($parsed_xml){
+public function get_medium_image($asin){
+	$parsed_xml = $this->ItemLookup($asin);
 	$current = $parsed_xml->Items->Item;
 	if (isset($current->MediumImage->URL)) {
 		return $current->MediumImage->URL;
 		}
 	else{
-		return("No matches found.");
+		return false;
    }
 }
 
