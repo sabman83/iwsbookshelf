@@ -87,16 +87,19 @@ $tags = $dbObject->get_tags($uid[0]);
 	<p>Click on the Shelf Title to display the books. Clicking on book image will take you to the Book Details page:
 	
 	<?
+	print $uid[0];
 	$row = $dbObject->get_tags($uid[0]);
+	//print_r($row);
 	$i = 0;
 	while($row[$i]){
 	print "<h3 class='tagTitle'>".$row[$i]."</h3>";
 	print"<div class='tagBooks'>";
 	$taggedBook = $dbObject->get_books_by_tags($row[$i],$uid[0]); 
+	$numOfBooks = count($taggedBook);
 	//print_r($taggedBook);
 	$j =0;
 	print "<table>";
-	while($taggedBook[$j])
+	while($j < $numOfBooks)
 		{
 		print "<tr>";
 		for($k=0;$k<3;$k++){

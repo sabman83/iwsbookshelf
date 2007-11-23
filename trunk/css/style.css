@@ -231,6 +231,38 @@ text-decoration: none;
 	font-style: italic;
 }
 
+.edit_button{
+	margin-top: 0px;
+	padding: 2px;
+	background: none;
+	cursor: pointer;
+	color: #926B4A;
+	border-top: 1px solid #C0935C;
+	border-left: 1px solid #C0935C;
+	border-bottom: 1px solid #D9B17D;
+	border-right: 1px solid #D9B17D;
+	font-size: 1.5em;
+	font-weight: bold;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+}
+
+.delete_button{
+	margin-top: 0px;
+	padding: 2px;
+	background: none;
+	cursor: pointer;
+	color: #926B4A;
+	border-top: 1px solid #C0935C;
+	border-left: 1px solid #C0935C;
+	border-bottom: 1px solid #D9B17D;
+	border-right: 1px solid #D9B17D;
+	font-size: 1.5em;
+	font-weight: bold;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+}
+
 .form_box {
 	border: 1px dotted #AA8661!important;
 	border: none;
