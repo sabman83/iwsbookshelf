@@ -99,13 +99,52 @@ window.addEvent('domready', function(){
 			});
 		}); 
 </script>	
+<script type="text/javascript">
+		window.addEvent('domready', function(){
+			$('delete_form').addEvent('submit', function(e) {
+				/**
+				 * Prevent the submit event
+				 */
+				new Event(e).stop();
+			
+				/**
+				 * This empties the log and shows the spinning indicator
+				 */
+				var emptyForm = $('form_box').setStyle('display','none'); 
+			
+				var log = $('display_results').empty().addClass('ajax-loading');
+				
+				/**
+				 * send takes care of encoding and returns the Ajax instance.
+				 * onComplete removes the spinner from the log.
+				 */
+				this.send({
+					update: log,
+					onComplete: function() {
+						log.removeClass('ajax-loading');
+					}
+				});
+			});
+		}); 
+</script>
 </head>
 <?php
 include_once('inc/aws.class.php');
+include_once('inc/db.class.php');
 
 $aws_object = new AmazonWebService();
+$dbObject = new dbBookshelf();
 $asin = $_GET['id'];
-$book_details = $aws_object->ItemLookup($_GET['id']);
+//$book_details = $aws_object->ItemLookup($_GET['id']);
+$check_dbConnect = $dbObject->connect();
+
+if($check_dbConnect){
+$name = $dbObject->get_uname($_SESSION['uemail']);
+$uid = $dbObject->get_uid($_SESSION['uemail']);
+$bookDetails = $dbObject->get_book_details($uid,$asin);
+$bookTags = $dbObject->get_book_tags($uid,$asin);
+}
+
 
 ?>
 <body>
@@ -132,6 +171,7 @@ $book_details = $aws_object->ItemLookup($_GET['id']);
 <li><a href="#">The Shelves</a></li>
 <li><a href="#">News</a></li>
 <li><a href="#">Timeline</a></li>
+<li><a href="ajax/logout.php">Logout</a></li>
 </ul>
 </div>
 
@@ -157,26 +197,37 @@ $book_details = $aws_object->ItemLookup($_GET['id']);
 
 <div id="content">
 
-    <h3>Add Books</h3>
+    <h3>Book Detail</h3>
 	<div id="form_box" class="form_box">
 	    <div id="add_box" style="display:block;">
-		    <p>Fill in the details below and click on Add</p>
+		    <p>Click on <i>"Save Edit"</i> to save any changes or click on <i>"Delete"</i> to remove the book from your shelf:</p>
 			<p><?
+				print $uid[0];
 				print("<img align=\"left\" src=\"".$aws_object->get_medium_image($asin)."\"></img>");
 				print("<br/>".$aws_object->get_title($asin));
-				print("<br/> By ".$aws_object->get_author($asin));?>
+				print("<br/> By ".$aws_object->get_author($asin));
+				//print_r($bookDetails);
+				//print_r($bookTags);
+				$bookTags = implode(",",$bookTags);
+				//print_r($bookTags);
+				$rating = $bookDetails["rating"] * 16;
+				$date = $bookDetails["date"];
+				$date = explode("-", $date);
+				$date = array_reverse($date);
+				$date = implode("/",$date);
+				?>
 			</p>
 			<br/><br/><br/><br/><br/>
-			<form id="add_form" method="post" action="ajax/store.php">
+			<form id="add_form" method="post" action="ajax/update.php?id=<?echo $asin;?>">
 			    <p>
-			      <label>1) Rate the book:</label>
+			      <label>Your Rating:</label>
 					
 					<ul class="star-rating">
 						<li>
-						      <a href="javascript: void(0)" title="" class="current-rating" id="current_rating" style="width: 0px;">
+						      <a href="javascript: void(0)" title="" class="current-rating" id="current_rating" style="width: <?echo $rating?>px;">
 						      Current Rating
 						      </a>
-						      </li>
+						</li>
 						<li>
 						      <a href="javascript: void(0)" title="1" id="one_rating" class="one-star">
 						      1 star
@@ -200,24 +251,27 @@ $book_details = $aws_object->ItemLookup($_GET['id']);
 						<li>
 							  <a href="javascript: void(0)" title="5" id="five_rating" class="five-stars">
 							  5 stars
-					      </a>
-					     </li>
+							  </a>
+					    </li>
 					</ul>
 					<br/>
-				 <p>
-				  <label>2) Enter the name of the shelves where you want this book to be placed. Separate each shelf name with a comma:</label>
-			      <input type="text" class="fields_contact_us" name="Shelf" id="shelf" />
+				<p>
+				  <label>Tags Assigned:</label>
+			      <input type="text" class="fields_contact_us" name="Shelf" id="shelf" value="<?echo $bookTags;?>" />
 				  <br/>
-				  <label>3) Write comments or your views about this book here:
-			       <textarea name="review" id="review" cols="80" rows="5"></textarea>
+				  <label>Comment/Review:
+			       <textarea name="review" id="review" cols="80" rows="5"><?echo $bookDetails["comments"]?></textarea>
 				  </label>
 				  <br/>
-				  <label>4) Date Read:
-				  <input type="text" name="date_read" id="date_read" class="fields_contact_us"/>
+				  <label>Date Read:
+				  <input type="text" name="date_read" id="date_read" class="fields_contact_us" value="<?echo $date;?>"/>
 				  </label>
-				  <input type="hidden" name="asin" id="asin" value="<? print $_GET['id']?>" />
-				  <input type="hidden" name="rating" id="rating" value="0" />
-			    <input type="submit" class="login_button" name="search" value="Add" id="add"/>
+				  <br/><br/><br/><br/>
+				  <input type="hidden" name="rating" id="rating" value="<?echo $bookDetails["rating"];?>" />
+				  <input type="submit" class="edit_button" name="edit" value="Save Edits" id="Edit"/></form>  or  
+				  <form id="delete_form" method="post" action="ajax/delete.php?id=<?echo $asin;?>">
+				  <input type="submit" class="delete_button" name="delete" value="Delete" id="delete"/>
+				  </form>
 			    </label>
 				</p>
 			</form>

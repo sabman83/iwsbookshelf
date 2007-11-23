@@ -118,23 +118,25 @@ public function get_medium_image($asin){
    }
 }
 
-public function get_title($parsed_xml){
+public function get_title($asin){
+	$parsed_xml = $this->ItemLookup($asin);
 	$current = $parsed_xml->Items->Item;
 	if (isset($current->ItemAttributes->Title)) {
 		return $current->ItemAttributes->Title;
 		}
 	else{
-		print("No matches found.");
+		print("title not found.");
    }
 }
 
-public function get_author($parsed_xml){
+public function get_author($asin){
+	$parsed_xml = $this->ItemLookup($asin);
 	$current = $parsed_xml->Items->Item;
 	if (isset($current->ItemAttributes->Author)) {
 		return $current->ItemAttributes->Author;
 		}
 	else{
-		print("No matches found.");
+		print("auythor not fond.");
    }
 }
 

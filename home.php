@@ -13,6 +13,7 @@ $check_dbConnect = $dbObject->connect();
 
 if($check_dbConnect){
 $name = $dbObject->get_uname($_SESSION['uemail']);
+$uid = $dbObject->get_uid($_SESSION['uemail']);
 }
 
 ?>
@@ -101,7 +102,7 @@ $name = $dbObject->get_uname($_SESSION['uemail']);
 
 
     <h3>Your entire Book Shelf....right here!!</h3>
-    <p><span style="float:left;font-size:50px;line-height:30px;padding-top:2px;font-family: Georgia;">W</span>elcome <b><?echo $name[0]." ".$name[1];?> </b>to your <b>Bookshelf Portal</b>.<br/><br/> <br/><br/><span style="float:left;font-size:50px;line-height:30px;padding-top:2px;font-family: Georgia;">Y</span>ou can start creating your bookshelf by clicking on the <b><i>"Add Books"</i></b> linkin the left menu. If you have already added your books then you can have a look at your shelf by clicking the <b><i>"Your Shelf"</i></b> link. The portal is also powered with <b><i>"News Feeds"</i></b> where you can browse through books related news items from Yahoo!, Google, CNN etc. Incase you follow literary blogs or websites, you can bookmark then and store them right here! Tag them and use the <b><i>"Bookmark"</i></b>  link on the left menu to view them </p>
+    <p><span style="float:left;font-size:50px;line-height:30px;padding-top:2px;font-family: Georgia;">W</span>elcome <b><?echo $name[0]." ".$name[1];?> </b>to your <b>Bookshelf Portal</b>.Your User id is<? echo $uid[0]; ?> .<br/><br/> <br/><br/><span style="float:left;font-size:50px;line-height:30px;padding-top:2px;font-family: Georgia;">Y</span>ou can start creating your bookshelf by clicking on the <b><i>"Add Books"</i></b> linkin the left menu. If you have already added your books then you can have a look at your shelf by clicking the <b><i>"Your Shelf"</i></b> link. The portal is also powered with <b><i>"News Feeds"</i></b> where you can browse through books related news items from Yahoo!, Google, CNN etc. Incase you follow literary blogs or websites, you can bookmark then and store them right here! Tag them and use the <b><i>"Bookmark"</i></b>  link on the left menu to view them </p>
 </div>
 
 <div id="footer"></div>

@@ -33,7 +33,25 @@ class dbBookshelf {
 	$result = mysql_query($query);
 	return $result;
 	}
-
+	
+	public function delete_book($uid,$asin){
+	$delete_query = "DELETE FROM bookshelf.books WHERE uid ='".$uid[0]."' and asin ='".$asin."'";
+	$delete_result = mysql_query($delete_query);
+	if($delete_result){
+	$delete_tag_query = "DELETE FROM bookshelf.tags WHERE uid ='".$uid[0]."' and asin ='".$asin."'";
+	$delete_tag_result = mysql_query($delete_tag_query);
+	return true;
+	}else{
+	return false;
+	}
+	}
+	
+	public function update_book($uid,$asin,$comments,$rating,$date){
+	$query = "UPDATE bookshelf.books SET rating = '".$rating."', comments = '".$comments."', date = '".$date."' WHERE uid = '".$uid."' and asin = '".$asin."'";
+	$result = mysql_query($query);
+	return $result;
+	}
+	
 	public function store_tags($uid,$asin_id,$tag_array){
 	foreach($tag_array as $tag)
 	{
@@ -42,7 +60,18 @@ class dbBookshelf {
 	}
 	return $result;
 	}
-
+	
+	public function update_tags($uid,$asin,$tag_array){
+	$delete_query = "DELETE FROM bookshelf.tags WHERE uid ='".$uid."' and asin ='".$asin."'";
+	$delete_result = mysql_query($delete_query);
+	foreach($tag_array as $tag)
+	{
+	$query = "INSERT INTO bookshelf.tags VALUES ('".$uid."','".$asin."','".$tag."')";
+	$result = mysql_query($query);
+	}
+	return $query;
+	}
+	
 	public function store_bookmark($uid,$url,$tag_array){
 	foreach($tag_array as $tag)
 	{
@@ -56,7 +85,7 @@ class dbBookshelf {
 	$query = "SELECT ufirstname, ulastname FROM bookshelf.user WHERE uemail = '".$uemail."'";
 	$result = mysql_query($query);
 	$row = mysql_fetch_row($result);
-	return $row;
+	return $row;	
 	}
 
 	public function get_uid($uemail){
@@ -89,6 +118,25 @@ class dbBookshelf {
 	}
 	return $row;
 	}
+	
+	public function get_book_details($uid,$asin){
+	$query = "SELECT * FROM bookshelf.books WHERE uid = '".$uid[0]."' AND asin ='".$asin."'";
+	$result = mysql_query($query);
+	$row = mysql_fetch_assoc($result);
+	return $row;
+	}
+	
+	public function get_book_tags($uid,$asin){
+	$query = "SELECT tag_names FROM bookshelf.tags WHERE uid = '".$uid[0]."' AND asin ='".$asin."'";
+	$result = mysql_query($query);
+	$row = array();
+	$i = 0;
+	while($tmp = mysql_fetch_row($result)){
+		$row[$i]  = $tmp[0]; 
+	$i++;
+	}
+	return $row;
+	}	
 	
 	public function connect(){
 		//connection to the database
