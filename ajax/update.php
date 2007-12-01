@@ -9,7 +9,6 @@ $check_dbConnect = $dbObject->connect();
 
 print $_SESSION['uemail'];
 $uid = $dbObject->get_uid($_SESSION['uemail']);
-print $uid[0];
 print "<br/>";
 //print $_POST['edit'];
 $asin = $_GET['id'];
@@ -29,7 +28,6 @@ if($update_book){
 //print $update_book;
 $update_tags = $dbObject->update_tags($uid[0],$asin,$tags);
 if($update_tags){
-print $update_tags;
 print "<br/><br/><p>Your Book has been Updated.<br/><br/><a href='JavaScript:location.reload(true);'>View Changes</a>||<a href='shelf.php'>Browse your Shelf</a></p>";}
 else{
 print "<p>This Book is already been deleted.<br/><br/><a href='search.php'>Search For Books</a>||<a href='shelf.php'>Browse your Shelf</a></p>";}

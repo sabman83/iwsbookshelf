@@ -27,9 +27,9 @@ $check_store = $dbObject->store_book($uid[0],$asin,$review,$rating,$date_read);
 if($check_store){
 $store_tags = $dbObject->store_tags($uid[0],$asin,$tags);
 
-print "<br/><br/><p>Your Book has been Added to your shelf.<br/><br/><a href='search.php'>Add More Books</a>||<a href='#'>Browse your Shelf</a></p>";}
+print "<br/><br/><p>Your Book has been Added to your shelf.<br/><br/><a href='search.php'>Add More Books</a>||<a href='shelf.php'>Browse your Shelf</a></p>";}
 else{
-print "<p>This Book is already in your shelf.<br/><br/><a href='search.php'>Search Again</a>||<a href='#'>Browse your Shelf</a></p>";}
+print "<p>This Book is already in your shelf.<br/><br/><a href='search.php'>Search Again</a>||<a href='shelf.php'>Browse your Shelf</a></p>";}
 }
 
 

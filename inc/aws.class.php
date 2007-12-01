@@ -39,7 +39,6 @@ return $parsed_xml;
 
 public function ItemLookup($Itemid){
 $this->Operation = "ItemLookup";
-$this->SearchIndex = $SearchIndex;
 $this->IdType = "ASIN";
 $this->request = "http://ecs.amazonaws.com/onca/xml"
    . "?Service=AWSECommerceService"
@@ -125,7 +124,7 @@ public function get_title($asin){
 		return $current->ItemAttributes->Title;
 		}
 	else{
-		print("title not found.");
+		return $asin;
    }
 }
 

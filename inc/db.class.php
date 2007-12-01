@@ -126,6 +126,20 @@ class dbBookshelf {
 	return $row;
 	}
 	
+	public function get_book_dates($uid){
+	$query = "SELECT asin, date FROM bookshelf.books WHERE uid = '".$uid[0]."'";
+	$result = mysql_query($query);
+	$row = array();
+	$i = 0;
+	while($tmp = mysql_fetch_assoc($result)){
+		$row[$i]['asin']  = $tmp['asin']; 
+		$row[$i]['date']  = $tmp['date'];
+	$i++;
+	}
+	return $row;
+	}
+	
+	
 	public function get_book_tags($uid,$asin){
 	$query = "SELECT tag_names FROM bookshelf.tags WHERE uid = '".$uid[0]."' AND asin ='".$asin."'";
 	$result = mysql_query($query);
