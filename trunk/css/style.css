@@ -133,6 +133,14 @@ dd {
 a:link, a:visited, a:active  {color: #666600}
 a:hover {color: #805D3F}
 
+a#previous{
+text-align:left;
+}
+
+a#next{
+text-align:right;
+margin-left:300px;
+}
 
 /*-------------- Navigation --------------*/
 
@@ -280,6 +288,12 @@ text-decoration: none;
 
 	background: url(../images/ajax-loader.gif) no-repeat left;
 }
+
+#newsFeeds.ajax-loading {
+
+	background: url(../images/ajax-loader.gif) no-repeat left;
+}
+
 
 td, th {
 		padding:5px;

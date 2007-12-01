@@ -44,11 +44,11 @@ $uid = $dbObject->get_uid($_SESSION['uemail']);
 <h4>Navigation</h4>
 <div id="navcontainer">
 <ul id="navlist">
-<li id="active"><a href="#" id="current">Home</a></li>
+<li><a href="#" id="current">Home</a></li>
 <li><a href="search.php">Add Books</a></li>
-<li><a href="#">Your Shelf</a></li>
-<li><a href="#">News</a></li>
-<li><a href="#">BookMarks</a></li>
+<li><a href="shelf.php">Your Shelf</a></li>
+<li><a href="feeds.php">News Feeds</a></li>
+<li><a href="bookmark.php">Your BookMarks</a></li>
 <li><a href="ajax/logout.php">Logout</a></li>
 </ul>
 </div>
