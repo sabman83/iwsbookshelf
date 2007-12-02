@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>The Book Store | By Dieter Schneider 2007 | www.csstemplateheaven.com</title>
+<title>The Book Store</title>
 <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="css/moodalbox.css" />
 
@@ -60,7 +60,6 @@
 <li><a href="search.php">Add Books</a></li>
 <li><a href="#">Your Shelf</a></li>
 <li><a href="feeds.php">News Feeds</a></li>
-<li><a href="bookmark.php">Your BookMarks</a></li>
 <li><a href="ajax/logout.php">Logout</a></li>
 </ul>
 </div>
@@ -69,15 +68,14 @@
 
 <div class="left_column_boxes">
 
-<h4>News</h4>
+<h4>About this Project</h4>
 <dl>
-<dt class="news">This is a definiton list</dt>
-<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed quam.  Nullam gravida aliquet odio. Phasellus ullamcorper tincidunt orci.  Praesent vel purus. Sed porttitor. Proin porttitor suscipit urna. Morbi  rhoncus posuere orci.</dd>
+<dt class="news">Whats is it about?</dt>
+<dd>The idea behind this project  is to develop a virtual online bookshelf. Any user should be able to search for the book he is looking for and be able to add it to his virtual shelf. He can rate them, tag them, write reviews about them and keep a timeline record of the books he has been reading.</dd>
 
-<dt class="news">Lists are cool</dt>
-<dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed quam.  Nullam gravida aliquet odio. Phasellus ullamcorper tincidunt orci.  Praesent vel purus. Sed porttitor. Proin porttitor suscipit urna. Morbi  rhoncus posuere orci.</dd>
+<dt class="news">What technologies does it use?</dt>
+<dd>The project uses PHP for the server interaction and Mootools JavaScript Library for the client interaction. It makes use of the Amazon Web Services to search for the books. The website uses a lot of AJAX calls for better user experience.</dd>
 </dl>
-
 </div>
 
   <p class="center">Developed by Sebastin Kolman Template Design from <a href="http://www.csstemplateheaven.com">www.csstemplateheaven.com</a></p>

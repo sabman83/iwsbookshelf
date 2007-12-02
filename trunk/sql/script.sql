@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Nov 17, 2007 at 01:34 PM
+-- Generation Time: Dec 02, 2007 at 02:19 PM
 -- Server version: 5.0.24
 -- PHP Version: 5.1.6
 -- 
@@ -16,7 +16,8 @@
 -- Table structure for table `bookmark`
 -- 
 
-CREATE TABLE `bookmark` (
+DROP TABLE IF EXISTS `bookmark`;
+CREATE TABLE IF NOT EXISTS `bookmark` (
   `uid` int(10) unsigned NOT NULL,
   `url` varchar(100) collate latin1_general_ci NOT NULL,
   `tags` varchar(30) collate latin1_general_ci NOT NULL default '',
@@ -29,7 +30,8 @@ CREATE TABLE `bookmark` (
 -- Table structure for table `books`
 -- 
 
-CREATE TABLE `books` (
+DROP TABLE IF EXISTS `books`;
+CREATE TABLE IF NOT EXISTS `books` (
   `uid` int(10) unsigned NOT NULL,
   `asin` varchar(15) collate latin1_general_ci NOT NULL,
   `rating` int(10) unsigned default NULL,
@@ -44,7 +46,8 @@ CREATE TABLE `books` (
 -- Table structure for table `tags`
 -- 
 
-CREATE TABLE `tags` (
+DROP TABLE IF EXISTS `tags`;
+CREATE TABLE IF NOT EXISTS `tags` (
   `uid` int(11) NOT NULL,
   `asin` varchar(15) collate latin1_general_ci NOT NULL,
   `tag_names` varchar(45) collate latin1_general_ci NOT NULL,
@@ -57,7 +60,8 @@ CREATE TABLE `tags` (
 -- Table structure for table `user`
 -- 
 
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
   `uid` int(10) unsigned NOT NULL auto_increment,
   `uemail` varchar(30) collate latin1_general_ci NOT NULL,
   `upassword` varchar(10) collate latin1_general_ci NOT NULL,
@@ -65,4 +69,4 @@ CREATE TABLE `user` (
   `ulastname` varchar(20) collate latin1_general_ci NOT NULL,
   PRIMARY KEY  (`uid`),
   UNIQUE KEY `uemail` (`uemail`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=9 ;
