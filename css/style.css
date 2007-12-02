@@ -195,6 +195,19 @@ input.fields_contact_us {
 	    margin-bottom: 3px;
 }
 
+input#shelf{
+        display: block;
+        width: 170px;
+        background: url(../images/menu_hover.png)!important;
+		background: none;
+		border-top: 1px solid #C0935C;
+		border-left: 1px solid #C0935C;
+		border-bottom: 1px solid #D9B17D;
+		border-right: 1px solid #D9B17D;
+		margin-top: 3px;
+	    margin-bottom: 3px;
+}
+
 textarea {
           width: 170px;
           background: url(../images/menu_hover.png)!important;
