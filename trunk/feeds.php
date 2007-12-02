@@ -65,7 +65,7 @@ if (!isset($_SESSION['uemail'])) {
 <dd>The idea behind this project  is to develop a virtual online bookshelf. Any user should be able to search for the book he is looking for and be able to add it to his virtual shelf. He can rate them, tag them, write reviews about them and keep a timeline record of the books he has been reading.</dd>
 
 <dt class="news">What technologies does it use?</dt>
-<dd>The project uses PHP for the server interaction and Mootools JavaScript Library for the client interaction. It makes use of the Amazon Web Services to search for the books. The website uses a lot of AJAX calls for better user experience.</dd>
+<dd>The project uses PHP for the server interaction and Mootools JavaScript Library for the client interaction. It makes use of the Amazon Web Services to search for the books. The website uses a lot of AJAX calls for better user experience. For the news feeds, I have used Yahoo Pipelines to aggregate feeds from Yahoo, CNN and Comic Book Resources.</dd>
 </dl>
 
 </div>
